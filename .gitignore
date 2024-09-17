@@ -1,18 +1,700 @@
-# This .gitignore is appropriate for repositories deployed to GitHub Pages and using
-# a Gemfile as specified at https://github.com/github/pages-gem#conventional
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ankush Mazumdar Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-# Basic Jekyll gitignores (synchronize to Jekyll.gitignore)
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
 
-# Additional Ruby/bundler ignore for when you run: bundle install
-/vendor
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #111;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
 
-# Specific ignore for GitHub Pages
-# GitHub Pages will always use its own deployed version of pages-gem 
-# This means GitHub Pages will NOT use your Gemfile.lock and therefore it is
-# counterproductive to check this file into the repository.
-# Details at https://github.com/github/pages-gem/issues/768
-Gemfile.lock
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 20px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ddd;
+        }
+
+        nav ul li a.active {
+            color: #f39c12;
+        }
+
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: 0.4s;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: #111;
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            left: 0;
+        }
+
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 100px;
+            padding-top: 150px; /* Space for fixed navigation */
+        }
+
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            width: 40%;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .left-side h1 {
+            font-size: 50px;
+        }
+
+        .left-side h2 {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+
+        .right-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            animation: fadeInRight 1s ease;
+        }
+
+        .profile-pic {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            border: 8px solid white;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+             nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+             }   
+
+            .left-side, .right-side {
+                width: 100%;
+                text-align: center;
+            }
+
+            .left-side h1 {
+                font-size: 30px;
+            }
+
+            .left-side h2 {
+                font-size: 18px;
+            }
+
+            .profile-pic {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background-color: #111;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 20px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ddd;
+        }
+
+        nav ul li a.active {
+            color: #f39c12;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px;
+            padding-top: 150px; /* Space for fixed navigation */
+        }
+
+        .left-side {
+            width: 50%;
+        }
+
+        .right-side {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-pic {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #111;
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            color: #f39c12;
+            margin-bottom: 50px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            max-width: 600px;
+            font-size: 18px;
+        }
+
+        .about-pic {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .about-content {
+            color: white;
+            max-width: 500px;
+        }
+
+        .about-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        .about-content .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .about-content .tabs button {
+            background-color: #444;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .about-content .tabs button.active {
+            background-color: #f39c12;
+        }
+
+        .about-content .tab-content {
+            font-size: 18px;
+        }
+
+        .contact {
+    padding: 50px 0;
+    background-color: #000;
+    color: white;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    width: 40%;
+    text-align: left;
+}
+
+.contact-info p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    margin-right: 10px;
+}
+
+.email-link, .phone-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.email-link:hover, .phone-link:hover {
+    color: #ff0066;
+}
+
+.social-links a {
+    font-size: 24px;
+    margin: 0 10px;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2);
+}
+
+.social-icon {
+    font-size: 30px;
+}
+
+.instagram {
+    color: white;
+}
+
+.instagram:hover {
+    color: #ff0066;
+}
+
+.download-cv {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.download-cv:hover {
+    background-color: #ff0066;
+    color: white;
+}
+
+.contact-form {
+    width: 50%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+.submit-btn {
+    padding: 10px 30px;
+    background-color: white;
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #ff0066;
+    color: white;
+}
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-side, .right-side {
+                width: 100%;
+                text-align: center;
+            }
+
+            .left-side h1 {
+                font-size: 40px;
+            }
+
+            .left-side h2 {
+                font-size: 24px;
+            }
+
+            .profile-pic {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: #111;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 36px;
+            color: #f39c12;
+            margin-bottom: 50px;
+        }
+
+        .service-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .service-card p {
+            color: #ddd;
+        }
+
+        /* Responsive Services */
+        @media screen and (max-width: 768px) {
+            .service-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="home" class="container">
+        <!-- Left Side -->
+        <div class="left-side">
+            <h1>Hi, I am Ankush Mazumdar</h1>
+            <h2>Web Developer from India</h2>
+        </div>
+
+        <!-- Right Side with Larger Profile Pic -->
+        <div class="right-side">
+            <a href="https://ibb.co/Pgjtdcg">
+                <img src="https://i.ibb.co/2dh5Tvd/b072f30f-a1ec-4b9e-bfb8-5786386c98f4.jpg" alt="Ankush Mazumdar Profile Photo" class="profile-pic">
+            </a>
+        </div>
+    </div>
+
+    <!-- Additional Sections -->
+    <div id="about" class="container">
+        <!-- Left Side (Image) -->
+        <div class="left-side">
+             <img src="https://i.ibb.co/XVHyvBz/Whats-App-Image-2024-04-03-at-5-18-27-PM-1.jpg" alt="Ankush Mazumdar" class="about-pic">
+        </div>
+
+        <!-- Right Side (About Content) -->
+        <div class="right-side">
+            <div class="about-content">
+                <h1>About Me</h1>
+                <p>I am currently a 2nd-year student in the Bachelor of Computer Applications (BCA) program, specializing in web development and programming.</p>
+
+                <!-- Tabs for Skills, Experience, Education -->
+                <div class="tabs">
+                    <button class="active" onclick="openTab('skills')">Skills</button>
+                    <button onclick="openTab('experience')">Experience</button>
+                    <button onclick="openTab('education')">Education</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="skills" class="tab-content">
+                    <h3>UI/UX</h3>
+                    <p>Designing Web</p>
+                    <h3>Web Development</h3>
+                    <p>Website Development</p>
+                </div>
+
+                <div id="experience" class="tab-content" style="display:none;">
+                    <h3>Freelance Web Developer (2024 - Present)</h3>
+                    <p><br>*Developing websites for clients, offering tailored solutions to businesses and professionals.</p></br>                                           <p>*Specializing in HTML, CSS, JavaScript, and responsive design.</p>
+                </div>
+
+                <div id="education" class="tab-content" style="display:none;">
+                     <h3>2022-2023</h3>
+                     <p>Computer science</p>
+                     <h3>2023-present</h3>
+                     <p>Bachelor of Computer Applications(BCA)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+      <!-- Services Section -->
+    <div id="services" class="services">
+        <h2>My Services</h2>
+        <div class="service-container">
+            <div class="service-card">
+                <h3>Web Design</h3>
+                <p>Creating aesthetically pleasing and user-friendly website designs tailored to your brand.</p>
+            </div>
+            <div class="service-card">
+                <h3>UI/UX Design</h3>
+                <p>Crafting intuitive and engaging interfaces to improve user experience.</p>
+            </div>
+            <div class="service-card">
+                <h3>App Design</h3>
+                <p>Designing mobile-friendly applications for a seamless user experience.</p>
+            </div>
+        </div>
+    </div>
+
+   <!-- Contact Me Section -->
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-container">
+        <div class="contact-info">
+            <p><a href="mailto:ankushmazumder121@gmail.com" class="email-link"><i class="fas fa-envelope"></i> ankushmazumder121@gmail.com</a></p>
+            <p><a href="tel:9123966544" class="phone-link"><i class="fas fa-phone-alt"></i>9123966544</a></p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/_ankushmz?igsh=OHhjZXlvaHFmbW1q" target="_ankushmz" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+            </div>
+            <a href="path/to/your-cv.pdf" class="download-cv" download>Download CV</a>
+        </div>
+
+        <div class="contact-form">
+            <form action="#" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+    <script>
+        function openTab(tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByTagName("button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+
+        // Initialize first tab
+        document.getElementById("skills").style.display = "block";
+    </script>
+
+</body>
+</html>
